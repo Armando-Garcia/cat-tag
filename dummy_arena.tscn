@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bsqcemxbs17ur"]
 
 [ext_resource type="Script" uid="uid://caj02ysnk42c7" path="res://trap_count.gd" id="1_opv44"]
-[ext_resource type="Resource" uid="uid://by34a47td4ogi" path="res://trap_power_resource.tres" id="2_vbcgh"]
+[ext_resource type="Resource" uid="uid://by34a47td4ogi" path="res://Powerups/trap_power_resource.tres" id="2_vbcgh"]
 [ext_resource type="Script" uid="uid://c7ju4065o277t" path="res://debuff_timer.gd" id="3_ny2u5"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_opv44"]

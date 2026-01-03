@@ -7,6 +7,7 @@ const default_speed = 700
 var SPEED = default_speed
 var last_direction = 1.0
 var jumps = alloted_jumps
+var movement_allowed = true
 @export var PowerupX: Powerup
 @export var PowerupB: Powerup
 
@@ -44,29 +45,10 @@ func slow():
 
 
 func _physics_process(delta: float) -> void:
-	var direction := Input.get_axis("Joystick_Left", "Joystick_Right")
-	#print(Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").angle())
+	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var wall_dir = get_wall_normal().x	
 	
-	var wall_dir = get_wall_normal().x
-	
-	if not is_on_floor():
-		velocity += get_gravity() * delta * 1.5
-	
-	if is_on_floor():
-		jumps = alloted_jumps
-		
-	if not is_on_wall():
-		$AnimatedSprite2D.play("default")
-	elif is_on_wall() and not is_on_floor():
-		if wall_dir == 1:
-			$AnimatedSprite2D.play("on wall")
-		elif wall_dir == -1:
-			$AnimatedSprite2D.play("on wall rotated")
-		
-		
-		
-		
-	# Handle jump and double jump
+	# Handle A button jump and double jump
 	if Input.is_action_just_pressed("A Button"):
 		if is_on_floor() and not is_on_wall():
 			velocity.y = JUMP_VELOCITY
@@ -77,23 +59,46 @@ func _physics_process(delta: float) -> void:
 			jumps = min(jumps + 1, alloted_jumps)
 			wall_jump(100,delta,get_wall_normal().x)
 	
+	# Two Powerups, one on B and one on X
 	if Input.is_action_just_pressed("B Button"):
-		print("B Press")
-		if PowerupB.has_method("use_power"):
-			PowerupB.use_power(self)
+		if PowerupB == null:
+			print("B Power Null")
+		elif PowerupB.has_method("use_power"):
+			PowerupB.use_power(self,input_direction)
 	
 	if Input.is_action_just_pressed("X Button"):
 		print("X Press")
 		if PowerupX.has_method("use_power"):
-			PowerupX.use_power(self)
+			PowerupX.use_power(self,input_direction)
 	
-	if direction and not is_on_wall():
-		velocity.x = direction * SPEED
+	
+	# Movement Logic Section
+	### Gravity
+	if not is_on_floor():
+		velocity += get_gravity() * delta * 1.5
+	
+	if is_on_floor():
+		jumps = alloted_jumps
+	
+	### Wall animations so we can wall jump with intention
+	if not is_on_wall():
+		$AnimatedSprite2D.play("default")
+	elif is_on_wall() and not is_on_floor():
+		if wall_dir == 1:
+			$AnimatedSprite2D.play("on wall")
+		elif wall_dir == -1:
+			$AnimatedSprite2D.play("on wall rotated")
+	
+	### Basic Movement
+	if PowerupB.move_allowed and PowerupX.move_allowed:
+		if input_direction.x and not is_on_wall():
+			velocity.x = input_direction.x * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		pass #this lets the powerup movement be the only movement
 	
 	move_and_slide()
-	
 
 
 func _on_debuff_timer_timeout() -> void:

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="trap_power" load_steps=3 format=3 uid="uid://by34a47td4ogi"]
 
-[ext_resource type="Script" uid="uid://bqkbnls1rd6ta" path="res://trap_script.gd" id="1_dk17w"]
+[ext_resource type="Script" uid="uid://bqkbnls1rd6ta" path="res://Powerups/trap_script.gd" id="1_dk17w"]
 [ext_resource type="PackedScene" uid="uid://ckdker2cy5uiq" path="res://trap_obj.tscn" id="2_eik6n"]
 
 [resource]

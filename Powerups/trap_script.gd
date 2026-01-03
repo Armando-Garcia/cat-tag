@@ -6,17 +6,17 @@ class_name trap_power
 
 var active_traps: Array[Node] = []
 
-func use_power(player: CharacterBody2D):
+func use_power(player: CharacterBody2D, _dir: Vector2):
 	var sprite = player.get_node("AnimatedSprite2D") # Adjust name to match your node
 	var spawn_dir = Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
 	active_traps = active_traps.filter(func(trap): return is_instance_valid(trap))
 	
 	if active_traps.size() >= max_traps:
 		pass
-		#print("Trap limit reached")
+		print("Trap limit reached")
 	else:
-		#print(active_traps.size())
-		super.use_power(player)
+		print(active_traps.size())
+		super.use_power(player,Vector2(0,0))
 		var new_trap = trap_scene.instantiate()
 	
 		if "use_num" in new_trap:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwtnf12u8rmyl"]
+[gd_scene load_steps=9 format=3 uid="uid://bwtnf12u8rmyl"]
 
 [ext_resource type="Script" uid="uid://bemt0ak84qk6k" path="res://character_body_2d.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://1sdv208ydpj6" path="res://art/bubbleShot.png" id="2_i3pqv"]
-[ext_resource type="Resource" uid="uid://by34a47td4ogi" path="res://trap_power_resource.tres" id="2_sweqy"]
+[ext_resource type="Resource" uid="uid://by34a47td4ogi" path="res://Powerups/trap_power_resource.tres" id="2_sweqy"]
+[ext_resource type="Resource" uid="uid://b5ui3ln1bbtgt" path="res://Powerups/pounce_move.tres" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://dnqfekq5n7lh3" path="res://art/bubblewall.png" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://dn2tdl08xch0a" path="res://art/bubblewall_rotated.png" id="4_hqtel"]
 
@@ -41,7 +42,7 @@ position = Vector2(-1, -3)
 collision_layer = 6
 script = ExtResource("1_onrkg")
 PowerupX = ExtResource("2_sweqy")
-PowerupB = ExtResource("2_sweqy")
+PowerupB = ExtResource("3_2hs0m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

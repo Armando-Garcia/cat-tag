@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="pounce_move" load_steps=2 format=3 uid="uid://b5ui3ln1bbtgt"]
+
+[ext_resource type="Script" uid="uid://dwait28poulwc" path="res://Powerups/pounce_script.gd" id="1_yanv7"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_yanv7")
+powerup_name = "Pounce Move"
+metadata/_custom_type_script = "uid://dttfkhb245lvu"
