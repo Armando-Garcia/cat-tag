@@ -6,7 +6,7 @@ extends Label
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if trap_resource:
 		var current_count = trap_resource.active_traps.size()
 		var max_count = trap_resource.max_traps

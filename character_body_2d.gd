@@ -8,6 +8,7 @@ var SPEED = default_speed
 var last_direction = 1.0
 var jumps = alloted_jumps
 var movement_allowed = true
+var last_dir = 1
 @export var PowerupX: Powerup
 @export var PowerupB: Powerup
 
@@ -47,6 +48,7 @@ func slow():
 func _physics_process(delta: float) -> void:
 	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var wall_dir = get_wall_normal().x	
+	
 	
 	# Handle A button jump and double jump
 	if Input.is_action_just_pressed("A Button"):
@@ -93,6 +95,7 @@ func _physics_process(delta: float) -> void:
 	if PowerupB.move_allowed and PowerupX.move_allowed:
 		if input_direction.x and not is_on_wall():
 			velocity.x = input_direction.x * SPEED
+			last_dir = 1 if input_direction.x > 0 else -1
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:

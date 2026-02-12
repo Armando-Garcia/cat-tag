@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bj60on1sco2kn"]
+
+[ext_resource type="Texture2D" uid="uid://dbq1m8coegkah" path="res://art/ice ball.png" id="1_l3qcs"]
+[ext_resource type="Script" uid="uid://clw6eopy1jag2" path="res://ice_ball_obj.gd" id="1_wfb1m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wfb1m"]
+radius = 20.0
+height = 58.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l3qcs"]
+radius = 21.0
+height = 58.0
+
+[node name="ice ball body" type="RigidBody2D"]
+collision_layer = 8
+gravity_scale = 0.0
+script = ExtResource("1_wfb1m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -1)
+scale = Vector2(0.43359375, 0.43359375)
+texture = ExtResource("1_l3qcs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_wfb1m")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-3, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, -3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_l3qcs")

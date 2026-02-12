@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7bevuxq00lex"]
+
+[ext_resource type="Script" uid="uid://ds0vsta3s7jfa" path="res://defender_dummy.gd" id="1_6s7n1"]
+[ext_resource type="Texture2D" uid="uid://24e5sqbxmw3i" path="res://art/Red_bird.png" id="1_hxvs3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lyrfq"]
+radius = 18.0
+height = 84.0
+
+[node name="attacker dummy" type="CharacterBody2D" groups=["attacker"]]
+collision_layer = 4
+script = ExtResource("1_6s7n1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.9073486e-06, 2.000002)
+scale = Vector2(1.2662338, 1.2662338)
+texture = ExtResource("1_hxvs3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_lyrfq")
